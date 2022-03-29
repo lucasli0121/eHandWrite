@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">handWrite</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="notify_title">提交通知</string>
+    <string name="notify_content">提交书写采集数据</string>
+    <string name="submit_success">提交成功</string>
+    <string name="submit_failed">提交失败</string>
+    <string name="kai_font">lzn_kai.ttf</string>
+    <string name="xing_font">tyz_xing.ttf</string>
+</resources>

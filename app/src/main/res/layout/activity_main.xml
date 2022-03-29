@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.handwrite.MainActivity">
+
+    <com.ycl.tabview.library.TabView
+        android:id="@+id/tabView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:tab_textViewSelColor="#64c8ac"
+        app:tab_textViewUnSelColor="#666666"
+        app:tab_tabViewBackgroundColor="@android:color/darker_gray"
+        app:imageViewTextViewMargin="2dip"
+        app:tab_tabViewDefaultPosition="0"
+        app:tab_tabViewGravity="top"
+        app:tab_textViewSize="@dimen/dimen_text_size_16"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
