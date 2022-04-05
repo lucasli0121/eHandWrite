@@ -5,11 +5,7 @@ import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.SurfaceHolder
-import com.libwriting.WriteApp
-import com.libwriting.dao.DaoBase
-import com.libwriting.dao.TrackPoint
-import com.libwriting.ui.DrawBaseView
-import com.libwriting.dao.Word
+import com.libwriting.data.DataBase
 import com.libwriting.ui.DrawView
 import com.libwriting.ui.PointEx
 import com.write.libwriting.R
@@ -19,14 +15,23 @@ import com.write.libwriting.R
     用于显示字库中的汉字
  */
 class WordView(context: Context?, attrs: AttributeSet?) : DrawView(context, attrs) {
-    var word: Word? = null
-        set(value: Word?) {
+    var word: String? = null
+        set(value: String?) {
+            if(value != field) {
+                field = value
+                drawWord()
+            }
+        }
+    var wordId: String? = null
+    var useBlackClr: Boolean = false
+        set(value: Boolean) {
             if(value != field) {
                 field = value
                 drawWord()
             }
         }
     private var ttf: String? = context?.resources?.getString(R.string.kai_font)
+    private var typeFace: Typeface = Typeface.createFromAsset(context?.assets, ttf)
     private var pathList: ArrayList<ArrayList<PointEx>>? = null
     override var choice = false
         set(c) {
@@ -36,9 +41,6 @@ class WordView(context: Context?, attrs: AttributeSet?) : DrawView(context, attr
                 drawPathPoint()
             }
         }
-
-    init {
-    }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
         super.surfaceCreated(holder)
@@ -52,24 +54,21 @@ class WordView(context: Context?, attrs: AttributeSet?) : DrawView(context, attr
         drawPathPoint()
     }
 
-    fun changeTtf(t: DaoBase.TtfType) {
+    fun changeTtf(t: DataBase.TtfType) {
         ttf = when(t) {
-            DaoBase.TtfType.Kai -> context?.resources?.getString(R.string.kai_font)
-            DaoBase.TtfType.Xing -> context?.resources?.getString(R.string.xing_font)
+            DataBase.TtfType.Kai -> context?.resources?.getString(R.string.kai_font)
+            DataBase.TtfType.Xing -> context?.resources?.getString(R.string.xing_font)
         }
+        typeFace = Typeface.createFromAsset(context?.assets, ttf)
     }
 
     private fun drawWord() {
-        var hasWrite: Boolean = false
         if(word != null && surfaceCreate) {
             bmCanvas?.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
             val paint = TextPaint()
             paint.style = Paint.Style.FILL_AND_STROKE
             paint.flags = Paint.ANTI_ALIAS_FLAG
-            if(word!!.hasWrite(context)) {
-                hasWrite = true
-            }
-            if(hasWrite) {
+            if(useBlackClr) {
                 paint.color = Color.BLACK
             } else if (choice) {
                 paint.color = gridLineChoiceColor
@@ -82,10 +81,10 @@ class WordView(context: Context?, attrs: AttributeSet?) : DrawView(context, attr
             var fm = paint.fontMetricsInt
 
             var fh = fm.descent - fm.ascent
-            var fw = paint.measureText(word!!.text)
+            var fw = paint.measureText(word!!)
             var x = width.toFloat() / 2
             var y = height.toFloat() - fm.descent - fm.leading //(height.toFloat() + fh) / 2
-            bmCanvas?.drawText(word!!.text, x, y, paint)
+            bmCanvas?.drawText(word!!, x, y, paint)
             postInvalidate()
         }
     }
@@ -94,7 +93,7 @@ class WordView(context: Context?, attrs: AttributeSet?) : DrawView(context, attr
         外部调用，用于根据轨迹字符串画字
      */
     fun drawPathFromStr(pointStr: String) {
-        pathList = DaoBase.parsePathFromStr(pointStr)
+        pathList = DataBase.parsePathFromStr(pointStr)
         drawPathPoint()
     }
     /*

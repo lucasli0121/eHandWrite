@@ -2,16 +2,9 @@ package com.libwriting.ui
 
 import android.content.Context
 import android.graphics.*
-import android.os.SystemClock
 import android.util.AttributeSet
-import android.util.Log
-import android.view.MotionEvent
-import android.view.PointerIcon
 import android.view.SurfaceHolder
-import android.view.View
-import com.libwriting.dao.DaoBase
-import com.libwriting.giftools.GifMake
-import com.write.libwriting.R
+import com.libwriting.data.DataBase
 
 /*
     用于采集的写字视图类，从DrawTouchView继承
@@ -53,7 +46,7 @@ open class CaptureTouchView(context: Context?, attrs: AttributeSet?) : DrawTouch
         转换的字符串用来保存到后台数据库
      */
     fun formatPathToStr(): String {
-        return DaoBase.formatPathToStr(pathList)
+        return DataBase.formatPathToStr(pathList)
     }
     /*
         后退撤回一步

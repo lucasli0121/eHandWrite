@@ -4,14 +4,10 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.net.Uri
-import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.view.SurfaceHolder
-import androidx.core.content.FileProvider
-import com.libwriting.dao.DaoBase
-import com.libwriting.dao.TrackPoint
+import com.libwriting.data.DataBase
 import com.libwriting.utils.VoiceMgr
 import java.io.File
 
@@ -71,7 +67,7 @@ open class PlayView(context: Context?, attrs: AttributeSet?) : DrawView(context,
     }
 
     fun drawPathFromStr(pointStr: String) {
-        var pathList = DaoBase.parsePathFromStr(pointStr)
+        var pathList = DataBase.parsePathFromStr(pointStr)
         drawPathPoint(pathList)
     }
     /*

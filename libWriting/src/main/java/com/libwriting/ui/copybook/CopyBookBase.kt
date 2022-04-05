@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.util.AttributeSet
 import android.widget.RelativeLayout
-import com.libwriting.dao.DaoBase
+import com.libwriting.data.DataBase
 import com.libwriting.ui.CaptureTouchView
 import com.libwriting.ui.DrawBaseView
 import com.libwriting.ui.DrawTouchView
@@ -103,7 +103,7 @@ open class CopyBookBase(context: Context, attrs: AttributeSet?) : RelativeLayout
                 pathMap[i] = drawViewList[i].getPathList()
             }
         }
-        return DaoBase.formatPathAryToStr(pathMap)
+        return DataBase.formatPathAryToStr(pathMap)
     }
 
     fun hasDrawPoints(): Boolean {

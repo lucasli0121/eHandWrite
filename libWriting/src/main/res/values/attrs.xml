@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="penColor" format="color|reference"/>
+    <attr name="backColor" format="reference|color"/>
+    <declare-styleable name="FrameBackgroud">
+        <attr name="penColor"/>
+        <attr name="backColor"/>
+    </declare-styleable>
+
+</resources>

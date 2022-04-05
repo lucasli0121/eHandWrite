@@ -2,34 +2,17 @@ package com.libwriting.ui
 
 import android.content.Context
 import android.graphics.*
-import android.os.Handler
-import android.os.HandlerThread
-import android.os.Looper
-import android.os.SystemClock
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.MotionEvent.TOOL_TYPE_STYLUS
-import android.view.SurfaceHolder
-import android.view.TouchDelegate
-import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.ScrollView
-import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.core.view.children
 import androidx.core.view.forEach
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.libwriting.service.SubmitTask
-import com.libwriting.utils.LineUtils
-import com.write.libwriting.R
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.pow
-import kotlin.math.round
-import kotlin.math.sqrt
 
 /*
     实现自定义的HorizontalScrollView类，用来防止onTouchEvent事件被抢占

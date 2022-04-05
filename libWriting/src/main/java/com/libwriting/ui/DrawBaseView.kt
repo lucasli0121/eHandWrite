@@ -2,8 +2,6 @@ package com.libwriting.ui
 
 import android.content.Context
 import android.graphics.*
-import android.os.Handler
-import android.os.Looper
 import android.util.AttributeSet
 import android.util.Log
 import android.view.SurfaceHolder
@@ -11,16 +9,24 @@ import android.view.SurfaceView
 import android.view.View
 import com.write.libwriting.R
 import java.util.*
-import kotlin.collections.ArrayList
 
 open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(context, attrs), SurfaceHolder.Callback  {
     private var Tag: String = "DrawBaseView"
-    enum class GridType(v:Int) {
-        NoneType(0),
-        TianziType(1),
-        TiaoxingType(2),
-        MiziType(3),
-        HuiziType(4)
+    enum class GridType {
+        NoneType,
+        TianziType,
+        TiaoxingType,
+        MiziType,
+        HuiziType,
+        KouziType
+    }
+    enum class LineType {
+        DashNoFrame,
+        DashWithFrame,
+        DashWithSolidFrame,
+        SolidNoFrame,
+        SolidWithFrame,
+        SoldWithDashFrame
     }
     companion object {
         val minThick = 3.0f
@@ -34,11 +40,14 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
                 initGridBitmap()
             }
         }
+    var lineType: LineType = LineType.DashWithSolidFrame
     protected var bmCanvas : Canvas? = null
     protected var bmBuf : Bitmap? = null
     private var bmGrid: Bitmap? = null
-    protected var surfaceDestroy: Boolean = false
+    private var surfaceDestroy: Boolean = false
     protected var surfaceCreate: Boolean = false
+    var colSpace: Int = 0
+    var rowSpace: Int = 0
     var thick = minThick
     var rows = 1
         set(value) {
@@ -54,6 +63,7 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
                 postInvalidate()
             }
         }
+
     var penColor: Int = resources.getColor(R.color.black, null)
     var choiceColor: Int = resources.getColor(R.color.red, null)
     var backColor: Int = resources.getColor(R.color.white, null)
@@ -288,7 +298,10 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
                     drawMiziGrid(canvas)
                 }
                 GridType.HuiziType -> {
-
+                    drawHuiziGrid(canvas)
+                }
+                GridType.KouziType -> {
+                    drawKouziGrid(canvas)
                 }
             }
             postInvalidate()
@@ -469,6 +482,78 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
                 canvas?.drawLine(left + colW, 0f, left + colW, height.toFloat(), paint)
             }
             left += colW
+        }
+    }
+    /*
+        在画布上画回子格
+     */
+    protected open fun drawHuiziGrid(canvas: Canvas?) {
+
+    }
+
+    /*
+        在画布上画口子格，允许是否全部用虚线
+     */
+    protected open fun drawKouziGrid(canvas: Canvas?) {
+        val paint = Paint()
+        paint.style = Paint.Style.STROKE
+        paint.flags = Paint.ANTI_ALIAS_FLAG
+        paint.strokeWidth = 1f
+        if(choice) {
+            paint.color = gridLineChoiceColor
+        } else {
+            paint.color = gridLineDefColor
+        }
+        var colW = (width - cols * colSpace) / cols
+        var rowH = (height - rows * rowSpace) / rows
+        var t = 0f
+        var l = 0f
+        if(lineType == LineType.DashWithFrame || lineType == LineType.SoldWithDashFrame) {
+            paint.pathEffect = DashPathEffect(floatArrayOf(5f, 5f, 5f, 5f), 1f)
+        }
+        if(lineType != LineType.DashNoFrame && lineType != LineType.SolidNoFrame) {
+            canvas?.drawRect(l, t, l + width, t + height, paint)
+        }
+
+        for(r in 0 until rows) {
+            l = 0f
+            for(c in 0 until cols) {
+                when(lineType) {
+                    LineType.DashNoFrame -> {
+                        paint.pathEffect = DashPathEffect(floatArrayOf(5f, 5f, 5f, 5f), 1f)
+                        canvas?.drawLine(l,t,l + colW, t, paint)
+                    }
+                    LineType.DashWithFrame -> {
+                        paint.pathEffect = DashPathEffect(floatArrayOf(5f, 5f, 5f, 5f), 1f)
+                        canvas?.drawLine(l,t,l + colW, t, paint)
+                    }
+                    LineType.DashWithSolidFrame -> {
+                        paint.pathEffect = DashPathEffect(floatArrayOf(5f, 5f, 5f, 5f), 1f)
+                        if(r > 0) {
+                            canvas?.drawLine(l,t,l + colW, t, paint)
+                        }
+                    }
+                    else -> {
+                        paint.pathEffect = null
+                        canvas?.drawLine(l,t,l + colW, t, paint)
+                    }
+                }
+                if(c == 0 && (lineType == LineType.DashNoFrame || lineType == LineType.SolidNoFrame)) {
+                    canvas?.drawLine(l, t, l, t + rowH, paint)
+                }
+                if(c < (cols - 1) || (lineType == LineType.DashNoFrame || lineType == LineType.SolidNoFrame)) {
+                    canvas?.drawLine(l + colW, t, l + colW, t + rowH, paint)
+                }
+                if(rowSpace > 0) {
+                    canvas?.drawLine(l, t + rowH, l + colW, t + rowH, paint)
+                }
+                l += colW
+                if(colSpace > 0) {
+                    canvas?.drawLine(l + colSpace, t, l + colSpace, t + rowH, paint)
+                    l += colSpace
+                }
+            }
+            t += (rowH + rowSpace)
         }
     }
 }

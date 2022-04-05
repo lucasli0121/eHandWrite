@@ -2,13 +2,9 @@ package com.libwriting.ui
 
 import android.content.Context
 import android.graphics.*
-import android.os.SystemClock
 import android.util.AttributeSet
-import android.util.Log
 import android.view.*
 import android.widget.RelativeLayout
-import com.libwriting.dao.TrackPoint
-import com.libwriting.giftools.GifMake
 import com.write.libwriting.R
 import com.write.libwriting.databinding.CapturePlayBinding
 

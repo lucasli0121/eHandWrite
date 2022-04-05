@@ -1,16 +1,11 @@
 package com.libwriting.ui.paper
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
-import android.widget.RelativeLayout
-import com.libwriting.dao.DaoBase
 import com.libwriting.ui.*
 import com.libwriting.utils.DisplayUtils
-import com.write.libwriting.R
 
 open class PaperBaseView(context: Context, attrs: AttributeSet?) : CapturePlayView(context, attrs) {
     //var binding: PaperBaseViewBinding
