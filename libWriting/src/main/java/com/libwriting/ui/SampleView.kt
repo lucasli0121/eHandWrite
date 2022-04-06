@@ -2,6 +2,7 @@ package com.libwriting.ui
 
 import android.content.Context
 import android.graphics.*
+import android.os.Build
 import android.text.TextPaint
 import android.util.AttributeSet
 import com.write.libwriting.R
@@ -30,7 +31,7 @@ class SampleView(context: Context?, attrs: AttributeSet?) : PlayView(context, at
         val paint = TextPaint()
         paint.style = Paint.Style.FILL_AND_STROKE
         paint.flags = Paint.ANTI_ALIAS_FLAG
-        paint.color = resources.getColor(R.color.light_gray, null)
+        paint.color = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.light_gray, null) else resources.getColor(R.color.light_gray)
         paint.alpha = 150
         paint.textSize = (width * 0.2).toFloat()
         paint.textAlign = Paint.Align.CENTER

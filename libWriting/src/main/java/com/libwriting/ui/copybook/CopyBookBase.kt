@@ -3,6 +3,7 @@ package com.libwriting.ui.copybook
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.os.Build
 import android.util.AttributeSet
 import android.widget.RelativeLayout
 import com.libwriting.data.DataBase
@@ -65,10 +66,10 @@ open class CopyBookBase(context: Context, attrs: AttributeSet?) : RelativeLayout
     open fun setWriteViewProperty(v: DrawTouchView) {
         v.enableFingerDraw = true
         v.thick = DrawBaseView.minThick
-        v.backColor = resources.getColor(R.color.black, null)
-        v.penColor = resources.getColor(R.color.white, null)
-        v.gridLineChoiceColor = resources.getColor(R.color.red, null)
-        v.gridLineDefColor = resources.getColor(R.color.white, null)
+        v.backColor = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.black, null) else resources.getColor(R.color.black)
+        v.penColor = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.white, null) else resources.getColor(R.color.white)
+        v.gridLineChoiceColor = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.red, null) else resources.getColor(R.color.red)
+        v.gridLineDefColor = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.white, null) else resources.getColor(R.color.white)
         v.forceUsePenColor = true
     }
 

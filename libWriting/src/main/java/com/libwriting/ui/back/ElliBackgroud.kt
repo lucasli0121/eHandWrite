@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
+import android.os.Build
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -12,7 +13,7 @@ import com.write.libwriting.R
 
 class ElliBackgroud(context: Context?, attrs: AttributeSet?) : androidx.appcompat.widget.AppCompatImageView(context!!, attrs) {
 
-    var penColor: Int = resources.getColor(R.color.black, null)
+    var penColor: Int = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.black, null) else resources.getColor(R.color.black)
         set(v) {
             if(field != v) {
                 field = v
@@ -20,7 +21,7 @@ class ElliBackgroud(context: Context?, attrs: AttributeSet?) : androidx.appcompa
                 //postInvalidate()
             }
         }
-    var backColor: Int = resources.getColor(android.R.color.transparent, null)
+    var backColor: Int = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(android.R.color.transparent, null) else resources.getColor(android.R.color.transparent)
         set(value) {
             if(field != value) {
                 field = value
