@@ -2,6 +2,7 @@ package com.libwriting.ui
 
 import android.content.Context
 import android.graphics.*
+import android.os.Build
 import android.util.AttributeSet
 import android.view.*
 import android.widget.RelativeLayout
@@ -27,7 +28,11 @@ open class CapturePlayView(context: Context?, attrs: AttributeSet?) : RelativeLa
         binding.capture.backColor = Color.TRANSPARENT
         binding.capture.gridType = DrawBaseView.GridType.NoneType
         binding.capture.penColor = Color.RED
-        binding.play.penColor = resources.getColor(R.color.light_gray, null)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            binding.play.penColor = resources.getColor(R.color.light_gray, null)
+        } else {
+            binding.play.penColor = resources.getColor(R.color.light_gray)
+        }
     }
     fun clearAll() {
         synchronized(this) {

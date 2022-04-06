@@ -2,6 +2,7 @@ package com.libwriting.ui
 
 import android.content.Context
 import android.graphics.*
+import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.view.SurfaceHolder
@@ -64,9 +65,9 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
             }
         }
 
-    var penColor: Int = resources.getColor(R.color.black, null)
-    var choiceColor: Int = resources.getColor(R.color.red, null)
-    var backColor: Int = resources.getColor(R.color.white, null)
+    var penColor: Int = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.black, null) else resources.getColor(R.color.black)
+    var choiceColor: Int = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.red, null) else resources.getColor(R.color.red)
+    var backColor: Int = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.white, null) else resources.getColor(R.color.white)
         set(value) {
             if(field != value) {
                 field = value
@@ -80,14 +81,14 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
                 postInvalidate()
             }
         }
-    var gridLineDefColor: Int = resources.getColor(R.color.black, null)
+    var gridLineDefColor: Int = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.black, null) else resources.getColor(R.color.black)
         set(v) {
             if(field != v) {
                 field = v
                 initGridBitmap()
             }
         }
-    var gridLineChoiceColor: Int = resources.getColor(R.color.red, null)
+    var gridLineChoiceColor: Int = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(R.color.red, null) else resources.getColor(R.color.red)
         set(v) {
             if(field != v) {
                 field = v
