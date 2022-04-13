@@ -34,6 +34,17 @@ open class CapturePlayView(context: Context?, attrs: AttributeSet?) : RelativeLa
             binding.play.penColor = resources.getColor(R.color.light_gray)
         }
     }
+    fun getBitmapWithBackground() : Bitmap? {
+        var bmPlay = playView.getBitmapWithBackground()
+        var bmCapture = captureView.getBitmap()
+        var canvas = bmPlay?.let { Canvas(it) }
+        if (bmCapture != null) {
+            canvas?.drawBitmap(bmCapture, 0f, 0f, null)
+            return bmPlay
+        }
+        return null
+    }
+
     fun clearAll() {
         synchronized(this) {
             binding.play.stopPlay()

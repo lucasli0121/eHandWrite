@@ -143,12 +143,16 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
     protected open fun initBitmapBuf(initCanvas: Boolean=true, hasAlpha: Boolean = true) : Bitmap? {
         var bm: Bitmap? = null
         if(width > 0 && height > 0) {
-            bm = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-            if(bm != null) {
-                bm?.setHasAlpha(hasAlpha)
-                if(initCanvas) {
-                    bmCanvas = Canvas(bm!!)
+            try {
+                bm = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+                if (bm != null) {
+                    bm?.setHasAlpha(hasAlpha)
+                    if (initCanvas) {
+                        bmCanvas = Canvas(bm!!)
+                    }
                 }
+            }catch (e: Exception) {
+                Log.e(Tag, e.message.toString())
             }
         }
         return bm
@@ -164,6 +168,13 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
             e.printStackTrace()
         }
         return null
+    }
+    open fun getBitmapWithBackground(): Bitmap? {
+        var bm = initBitmapBuf(initCanvas = false)
+        var canvas = bm?.let { Canvas(it) }
+        doDrawBackgroud(canvas)
+        bmBuf?.let { canvas?.drawBitmap(it, 0f, 0f, null) }
+        return bm
     }
 
     open fun clearAll() {

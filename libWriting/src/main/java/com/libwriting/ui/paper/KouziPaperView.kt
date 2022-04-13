@@ -24,7 +24,7 @@ class KouziPaperView(context: Context, attrs: AttributeSet?) : PaperBaseView(con
         super.setDefaultProperty()
         captureView.gridType = DrawBaseView.GridType.NoneType
         playView.gridType = DrawBaseView.GridType.KouziType
-        playView.lineType = DrawBaseView.LineType.SolidNoFrame
+        playView.lineType = DrawBaseView.LineType.DashWithFrame
         playView.backColor = Color.WHITE
         playView.gridLineDefColor = Color.RED
 //        playView.visibility = View.GONE

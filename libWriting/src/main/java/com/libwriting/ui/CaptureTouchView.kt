@@ -32,8 +32,11 @@ open class CaptureTouchView(context: Context?, attrs: AttributeSet?) : DrawTouch
         }
 
     override fun getBitmap() : Bitmap? {
-        return drawBitmap2()
+        return drawBitmap2(false)
         //return super.getBitmap()
+    }
+    fun getBitmapWithBackcolor(): Bitmap? {
+        return drawBitmap2(true)
     }
 
     fun getPathList(): ArrayList<ArrayList<PointEx>> {
@@ -113,12 +116,15 @@ open class CaptureTouchView(context: Context?, attrs: AttributeSet?) : DrawTouch
             }
         }
     }
-    private fun drawBitmap2(): Bitmap?{
+    private fun drawBitmap2(withBackColor: Boolean): Bitmap?{
         if(bmList.size == 0) {
             return null
         }
         var bm = initBitmapBuf(false)
         var canvas = Canvas(bm!!)
+        if(withBackColor) {
+            doDrawBackgroud(canvas)
+        }
         synchronized(bmList) {
             bmList.forEach { canvas?.drawBitmap(it, 0f, 0f, null) }
         }
