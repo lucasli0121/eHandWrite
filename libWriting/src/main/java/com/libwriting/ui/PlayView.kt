@@ -46,8 +46,8 @@ open class PlayView(context: Context?, attrs: AttributeSet?) : DrawView(context,
         stopPlay = true
         if(thread != null) {
             try {
+                thread?.join(1000)
                 thread?.interrupt()
-                thread?.join()
             } catch (e: Exception) {}
             thread = null
         }
@@ -77,17 +77,15 @@ open class PlayView(context: Context?, attrs: AttributeSet?) : DrawView(context,
         画的时候计算两个点之间的停留时间
      */
     open fun drawPathPoint(pathList: ArrayList<ArrayList<PointEx>>) {
-        if(thread != null) {
-            try {
-                thread?.interrupt()
-                thread?.join()
-            } catch (e: Exception) {}
-        }
+        stopPlay()
         stopPlay = false
         thread = Thread {
             try {
                 for (i in 0 until playNum) {
                     clearAll()
+                    if(stopPlay) {
+                        return@Thread
+                    }
                     for (i in pathList!!.indices) {
                         if(stopPlay) {
                             return@Thread
@@ -95,6 +93,9 @@ open class PlayView(context: Context?, attrs: AttributeSet?) : DrawView(context,
                         var ptList = pathList[i]
                         var lastPathPt: PointEx? = null
                         for (n in ptList.indices) {
+                            if(stopPlay) {
+                                return@Thread
+                            }
                             var pt1 = ptList[n]  //
                             pt1.w = width
                             pt1.h = height
