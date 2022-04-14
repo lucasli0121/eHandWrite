@@ -103,15 +103,17 @@ open class CaptureTouchView(context: Context?, attrs: AttributeSet?) : DrawTouch
         if(bmBuf == null) {
             bmBuf = initBitmapBuf(false)
         }
-        var canvas = Canvas(bmBuf!!)
-        synchronized(bmList) {
-            if (bmIndex == (bmList.size - 1)) {
-                canvas?.drawBitmap(bmList[bmIndex], 0f, 0f, null)
-            } else {
-                canvas?.drawColor(backColor, PorterDuff.Mode.CLEAR)
-                if(bmList.size > 0) {
-                    bmList.forEach { canvas?.drawBitmap(it, 0f, 0f, null) }
-                    bmIndex = bmList.size - 1
+        if(bmBuf != null) {
+            var canvas = Canvas(bmBuf!!)
+            synchronized(bmList) {
+                if (bmIndex == (bmList.size - 1)) {
+                    canvas?.drawBitmap(bmList[bmIndex], 0f, 0f, null)
+                } else {
+                    canvas?.drawColor(backColor, PorterDuff.Mode.CLEAR)
+                    if (bmList.size > 0) {
+                        bmList.forEach { canvas?.drawBitmap(it, 0f, 0f, null) }
+                        bmIndex = bmList.size - 1
+                    }
                 }
             }
         }

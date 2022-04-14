@@ -46,7 +46,7 @@ open class PlayView(context: Context?, attrs: AttributeSet?) : DrawView(context,
         stopPlay = true
         if(thread != null) {
             try {
-                thread?.join(1000)
+                thread?.join(3000)
                 thread?.interrupt()
             } catch (e: Exception) {}
             thread = null
