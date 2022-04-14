@@ -42,17 +42,21 @@ class TiaoPaperView(context: Context, attrs: AttributeSet?) : PaperBaseView(cont
     fun setVGridProp() {
         var colW = gridWidth
         var rowH = height
-        captureView.cols = width / colW
-        captureView.rows = height / rowH
-        playView.cols = width / colW
-        playView.rows = height / rowH
+        if(rowH > 0 && colW > 0) {
+            captureView.cols = width / colW
+            captureView.rows = height / rowH
+            playView.cols = width / colW
+            playView.rows = height / rowH
+        }
     }
     fun setHGridProp() {
         var colW = width
         var rowH = gridHeight
-        captureView.cols = width / colW
-        captureView.rows = height / rowH
-        playView.cols = width / colW
-        playView.rows = height / rowH
+        if(rowH > 0 && colW > 0) {
+            captureView.cols = width / colW
+            captureView.rows = height / rowH
+            playView.cols = width / colW
+            playView.rows = height / rowH
+        }
     }
 }

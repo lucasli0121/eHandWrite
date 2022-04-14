@@ -34,9 +34,11 @@ class TianZiPaperView(context: Context, attrs: AttributeSet?) : PaperBaseView(co
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         super.onLayout(changed, l, t, r, b)
-        captureView.cols = width / gridWidth
-        captureView.rows = height / gridHeight
-        playView.cols = width / gridWidth
-        playView.rows = height / gridHeight
+        if(gridWidth > 0 && gridHeight > 0) {
+            captureView.cols = width / gridWidth
+            captureView.rows = height / gridHeight
+            playView.cols = width / gridWidth
+            playView.rows = height / gridHeight
+        }
     }
 }

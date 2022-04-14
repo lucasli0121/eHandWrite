@@ -66,9 +66,11 @@ open class PlayView(context: Context?, attrs: AttributeSet?) : DrawView(context,
         }
     }
 
-    fun drawPathFromStr(pointStr: String) {
-        var pathList = DataBase.parsePathFromStr(pointStr)
-        drawPathPoint(pathList)
+    fun  drawPathFromStr(pointStr: String) {
+        synchronized(this) {
+            var pathList = DataBase.parsePathFromStr(pointStr)
+            drawPathPoint(pathList)
+        }
     }
     /*
         把传入的整个采样坐标的路径再重复画一次

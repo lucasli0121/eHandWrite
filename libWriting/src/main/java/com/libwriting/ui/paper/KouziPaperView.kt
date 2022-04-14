@@ -41,11 +41,13 @@ class KouziPaperView(context: Context, attrs: AttributeSet?) : PaperBaseView(con
         var rowH = gridWidth
         val colSpace = 0
         val rowSpace = 20
-        captureView.rowSpace = rowSpace
-        captureView.cols = width / (colW+colSpace)
-        captureView.rows = height / (rowH+rowSpace)
-        playView.rowSpace = rowSpace
-        playView.cols = width / (colW+colSpace)
-        playView.rows = height / (rowH+rowSpace)
+        if(colW > 0 && rowH > 0) {
+            captureView.rowSpace = rowSpace
+            captureView.cols = width / (colW + colSpace)
+            captureView.rows = height / (rowH + rowSpace)
+            playView.rowSpace = rowSpace
+            playView.cols = width / (colW + colSpace)
+            playView.rows = height / (rowH + rowSpace)
+        }
     }
 }
