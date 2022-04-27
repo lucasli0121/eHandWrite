@@ -50,6 +50,7 @@ open class PlayView(context: Context?, attrs: AttributeSet?) : DrawView(context,
                 thread?.interrupt()
             } catch (e: Exception) {}
             thread = null
+            clearAll()
         }
     }
 
@@ -78,6 +79,9 @@ open class PlayView(context: Context?, attrs: AttributeSet?) : DrawView(context,
      */
     open fun drawPathPoint(pathList: ArrayList<ArrayList<PointEx>>) {
         stopPlay()
+        if(pathList.size <= 0) {
+            return
+        }
         stopPlay = false
         thread = Thread {
             try {
@@ -126,7 +130,12 @@ open class PlayView(context: Context?, attrs: AttributeSet?) : DrawView(context,
                             Thread.sleep(ms, ns.toInt())
                         }
                     }
-                    Thread.sleep(2000)
+                    for(m in 0 until 2000) {
+                        if(stopPlay) {
+                            return@Thread
+                        }
+                        Thread.sleep(1)
+                    }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
