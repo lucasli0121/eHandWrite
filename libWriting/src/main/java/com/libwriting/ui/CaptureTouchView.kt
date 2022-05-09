@@ -123,6 +123,9 @@ open class CaptureTouchView(context: Context?, attrs: AttributeSet?) : DrawTouch
             return null
         }
         var bm = initBitmapBuf(false)
+        if(bm == null) {
+            bm = bmList[0]
+        }
         var canvas = Canvas(bm!!)
         if(withBackColor) {
             doDrawBackgroud(canvas)
