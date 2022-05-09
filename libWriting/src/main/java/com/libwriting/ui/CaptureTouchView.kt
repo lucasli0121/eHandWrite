@@ -138,6 +138,16 @@ open class CaptureTouchView(context: Context?, attrs: AttributeSet?) : DrawTouch
 
     override fun readyDraw() {
         super.readyDraw()
+        if(bmList.size > 50) {
+            var bm = bmList[0]
+            var canvas = Canvas(bm!!)
+            synchronized(bmList) {
+                canvas?.drawBitmap(bmList[1], 0f, 0f, null)
+                bmList[1].recycle()
+                bmList.removeAt(1)
+                bmIndex = bmList.size - 1
+            }
+        }
         var bm = initBitmapBuf()
         if(bm != null) {
             curBm = bm
