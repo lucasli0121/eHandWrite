@@ -135,10 +135,13 @@ open class CaptureTouchView(context: Context?, attrs: AttributeSet?) : DrawTouch
 
     override fun readyDraw() {
         super.readyDraw()
-        curBm = initBitmapBuf()
-        synchronized(bmList) {
-            bmList.add(curBm!!)
-            bmIndex = bmList.size - 1
+        var bm = initBitmapBuf()
+        if(bm != null) {
+            curBm = bm
+            synchronized(bmList) {
+                bmList.add(curBm!!)
+                bmIndex = bmList.size - 1
+            }
         }
     }
 

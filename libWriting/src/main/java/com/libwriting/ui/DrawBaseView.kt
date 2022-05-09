@@ -151,6 +151,8 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
                         bmCanvas = Canvas(bm!!)
                     }
                 }
+            }catch (e: OutOfMemoryError) {
+                bm = null
             }catch (e: Exception) {
                 Log.e(Tag, e.message.toString())
             }
@@ -219,6 +221,14 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
     override fun surfaceDestroyed(holder: SurfaceHolder) {
         surfaceDestroy = true
         surfaceCreate = false
+        if(bmBuf != null) {
+            bmBuf?.recycle()
+            bmBuf = null
+        }
+        if(bmGrid != null) {
+            bmGrid?.recycle()
+            bmGrid = null
+        }
     }
 
     override fun postInvalidate() {
