@@ -285,6 +285,9 @@ open class DrawTouchView(context: Context?, attrs: AttributeSet?) : DrawView(con
                     ptLst.clear()
                 }
             }
+            else -> {
+
+            }
         }
     }
     protected open fun readyDraw() {

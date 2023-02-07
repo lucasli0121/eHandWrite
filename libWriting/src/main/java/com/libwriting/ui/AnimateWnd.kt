@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.write.libwriting.R
-import com.write.libwriting.databinding.AnimateFrameBinding
+import com.libwriting.R
+import com.libwriting.databinding.AnimateFrameBinding
 
 class AnimateWnd(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
     var binding: AnimateFrameBinding

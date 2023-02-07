@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.View
-import com.write.libwriting.R
+import com.libwriting.R
 import java.util.*
 
 open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(context, attrs), SurfaceHolder.Callback  {
@@ -310,6 +310,9 @@ open class DrawBaseView(context: Context?, attrs: AttributeSet?) : SurfaceView(c
                 canvas?.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
             }
             when (gridType) {
+                GridType.NoneType -> {
+
+                }
                 GridType.TianziType -> {
                     drawTianGrid(canvas)
                 }

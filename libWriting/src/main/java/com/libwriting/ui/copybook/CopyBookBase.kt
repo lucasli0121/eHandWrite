@@ -12,7 +12,7 @@ import com.libwriting.ui.DrawBaseView
 import com.libwriting.ui.DrawTouchView
 import com.libwriting.ui.PointEx
 import com.libwriting.utils.DisplayUtils
-import com.write.libwriting.R
+import com.libwriting.R
 
 open class CopyBookBase(context: Context, attrs: AttributeSet?) : RelativeLayout(context, attrs) {
     //var binding: PaperBaseViewBinding

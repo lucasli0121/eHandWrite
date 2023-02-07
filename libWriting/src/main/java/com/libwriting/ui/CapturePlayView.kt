@@ -6,8 +6,8 @@ import android.os.Build
 import android.util.AttributeSet
 import android.view.*
 import android.widget.RelativeLayout
-import com.write.libwriting.R
-import com.write.libwriting.databinding.CapturePlayBinding
+import com.libwriting.R
+import com.libwriting.databinding.CapturePlayBinding
 
 /*
     底部增加动态显示轨迹

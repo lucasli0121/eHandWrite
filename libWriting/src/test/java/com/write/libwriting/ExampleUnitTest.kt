@@ -1,4 +1,4 @@
-package com.write.libwriting
+package com.libwriting
 
 import org.junit.Test
 

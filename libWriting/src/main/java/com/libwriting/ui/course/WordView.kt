@@ -8,7 +8,7 @@ import android.view.SurfaceHolder
 import com.libwriting.data.DataBase
 import com.libwriting.ui.DrawView
 import com.libwriting.ui.PointEx
-import com.write.libwriting.R
+import com.libwriting.R
 
 /*
     实现系统字库，标准字的视图类

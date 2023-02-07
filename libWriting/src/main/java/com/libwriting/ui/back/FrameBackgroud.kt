@@ -10,7 +10,7 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
-import com.write.libwriting.R
+import com.libwriting.R
 
 class FrameBackgroud(context: Context?, attrs: AttributeSet?) : androidx.appcompat.widget.AppCompatImageView(context!!, attrs) {
 

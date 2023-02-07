@@ -11,7 +11,7 @@ import android.os.Message
 import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
-import com.write.libwriting.R
+import com.libwriting.R
 
 class PromptMessage(activity: Activity?, msg: String) {
     var _promptMsg = "promptMsg"

@@ -5,7 +5,7 @@ import android.graphics.*
 import android.os.Build
 import android.text.TextPaint
 import android.util.AttributeSet
-import com.write.libwriting.R
+import com.libwriting.R
 
 /*
     这个是显示采样的视图

@@ -9,7 +9,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import com.libwriting.utils.LineUtils
-import com.write.libwriting.R
+import com.libwriting.R
 import kotlin.math.max
 import kotlin.math.pow
 import kotlin.math.round

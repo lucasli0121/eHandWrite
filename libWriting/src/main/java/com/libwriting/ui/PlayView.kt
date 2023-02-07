@@ -179,6 +179,9 @@ open class PlayView(context: Context?, attrs: AttributeSet?) : DrawView(context,
                 DrawTouchView.TouchStatus.UP -> {
                     t.pt?.let { drawEndPointEx(it) }
                 }
+                else -> {
+
+                }
             }
         }
     }

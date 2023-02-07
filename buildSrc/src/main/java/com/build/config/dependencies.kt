@@ -17,19 +17,18 @@
 package com.build.config
 
 object Versions {
-    const val ktlint = "0.44.0"
-    const val compileSdkVersion = 31
+    const val compileSdkVersion = 33
     const val buildToolsVersion = "30.0.3"
     const val minSdkVersion = 21
-    const val targetSdkVersion = 28
+    const val targetSdkVersion = 29
     const val versionCode = 33
     const val versionName = "1.1.3"
     const val appId = "com.write"
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.1.2"
-    const val jdkDesugar = "com.android.tools:desugar_jdk_libs:1.1.5"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.3.1"
+    const val jdkDesugar = "com.android.tools:desugar_jdk_libs:2.0.0"
 
     const val junit = "junit:junit:4.+"
 
@@ -43,8 +42,8 @@ object Libs {
     }
 
     object Kotlin {
-        const val version = "1.6.10"
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
+        const val version = "1.7.10"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$version"
     }
@@ -66,7 +65,7 @@ object Libs {
 
         object Compose {
             const val snapshot = ""
-            const val version = "1.1.1"
+            const val version = "1.3.1"
 
             const val foundation = "androidx.compose.foundation:foundation:$version"
             const val layout = "androidx.compose.foundation:foundation-layout:$version"

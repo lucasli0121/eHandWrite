@@ -10,8 +10,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.LinearLayout
-import com.write.libwriting.R
-import com.write.libwriting.databinding.RecordToolBinding
+import com.libwriting.R
+import com.libwriting.databinding.RecordToolBinding
 import java.io.BufferedOutputStream
 import java.io.DataOutputStream
 import java.io.File
